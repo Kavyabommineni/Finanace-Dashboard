@@ -1,0 +1,28 @@
+.sidebar {
+  width: 220px;
+  background: #1e293b;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.nav-item {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.nav-item:hover {
+  background: #334155;
+}

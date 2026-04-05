@@ -1,0 +1,87 @@
+.transactions-page h2 {
+  margin-bottom: 15px;
+}
+
+/* Filter Card */
+.filter-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Input group */
+.filter-group {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.filter-group input {
+  border: none;
+  background: transparent;
+  outline: none;
+  margin-left: 5px;
+}
+
+/* Table */
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modern-table th {
+  text-align: left;
+  padding: 12px;
+  background: #f8fafc;
+}
+
+.modern-table td {
+  padding: 12px;
+  border-top: 1px solid #eee;
+}
+
+/* Colors */
+.green {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.red {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+/* Badge */
+.badge {
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.badge.income {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.badge.expense {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Buttons */
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.export {
+  background: #059669;
+}

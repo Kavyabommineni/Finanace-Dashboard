@@ -1,0 +1,75 @@
+.insights-page {
+  padding: 10px;
+}
+
+/* TOP GRID */
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.insight-card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.insight-card:hover {
+  transform: translateY(-4px);
+}
+
+.insight-card h4 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.insight-card p {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Highlight card */
+.highlight {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+
+/* 🔥 BOTTOM LAYOUT FIX */
+.insights-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* KEY FIX */
+  gap: 20px;
+}
+
+/* Chart */
+.chart-card {
+  width: 100%;
+}
+
+/* Category section */
+.category-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Category rows */
+.category-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 10px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.category-row:hover {
+  background: #e2e8f0;
+}
