@@ -22,23 +22,19 @@ export default function App() {
   const [filterType, setFilterType] = useState("all");
   const [sortBy, setSortBy] = useState("none");
 
-  // 🌙 Dark Mode
-  const [darkMode, setDarkMode] = useState(false);
+  // 🌙 Dark Mode (improved load)
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("darkMode");
+    return saved ? JSON.parse(saved) : false;
+  });
 
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
 
-  // Save dark mode preference
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
-
-  // Load dark mode preference
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("darkMode");
-    if (savedTheme) setDarkMode(JSON.parse(savedTheme));
-  }, []);
 
   // ✅ Summary
   const summary = useMemo(() => {
@@ -49,9 +45,9 @@ export default function App() {
     });
 
     return {
-      income: income || 0,
-      expense: expense || 0,
-      balance: (income || 0) - (expense || 0)
+      income,
+      expense,
+      balance: income - expense
     };
   }, [transactions]);
 
@@ -113,25 +109,24 @@ export default function App() {
       : `Spending decreased by ${Math.abs(change).toFixed(1)}%`;
   }, [transactions]);
 
-  // ✅ Category Insight
+  // ✅ Category Insight (FIXED SAFE)
   const categoryInsight = useMemo(() => {
-    const total = transactions
-      .filter(t => t.type === "expense")
-      .reduce((sum, t) => sum + t.amount, 0);
+    const expenses = transactions.filter(t => t.type === "expense");
+
+    if (expenses.length === 0) return "No data";
+
+    const total = expenses.reduce((sum, t) => sum + t.amount, 0);
 
     const map = {};
-
-    transactions.forEach(t => {
-      if (t.type === "expense") {
-        map[t.category] = (map[t.category] || 0) + t.amount;
-      }
+    expenses.forEach(t => {
+      map[t.category] = (map[t.category] || 0) + t.amount;
     });
 
     const top = Object.entries(map).sort((a, b) => b[1] - a[1])[0];
 
-    if (!top) return "No data";
-
-    const percent = ((top[1] / total) * 100).toFixed(1);
+    const percent = total > 0
+      ? ((top[1] / total) * 100).toFixed(1)
+      : 0;
 
     return `${top[0]} accounts for ${percent}% of your expenses`;
   }, [transactions]);
@@ -216,18 +211,15 @@ export default function App() {
 
       <div className="main-content">
 
-        {/* 🔥 Top Bar */}
         <div className="top-bar">
           <h2>Finance Dashboard</h2>
 
           <div className="role-container">
 
-            {/* 🌙 Dark Mode Toggle */}
             <button className="dark-btn" onClick={() => setDarkMode(!darkMode)}>
               {darkMode ? "☀️ Light" : "🌙 Dark"}
             </button>
 
-            {/* Role Toggle */}
             <div className={`role-toggle ${role}`}>
               <div className="slider"></div>
 
@@ -243,18 +235,15 @@ export default function App() {
           </div>
         </div>
 
-        {/* Pages */}
         {current === "dashboard" && (
           transactions.length === 0
-            ? <div className="empty-state">
-  No data available
-</div>
+            ? <div className="empty-state">No data available</div>
             : <DashboardPage summary={summary} transactions={transactions} />
         )}
 
         {current === "transactions" && (
           filtered.length === 0
-            ? <p>No transactions found</p>
+            ? <div className="empty-state">No transactions found</div>
             : <TransactionsPage
                 search={search}
                 setSearch={setSearch}
