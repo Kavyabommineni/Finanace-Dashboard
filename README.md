@@ -59,25 +59,13 @@ The goal of this project is to demonstrate frontend development skills including
 
 ## ⚙️ Setup Instructions
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/your-username/finance-dashboard.git
-```
-
-2. Navigate into the project:
-
-```bash
-cd finance-dashboard
-```
-
-3. Install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-4. Run the app:
+2. Run the app:
 
 ```bash
 npm run dev
@@ -115,9 +103,9 @@ npm run dev
 
 ---
 
-## 📸 Screenshots
+## 🌐 Live Demo
 
-*(Add screenshots here after deployment)*
+👉 https://finanace-dashboard-oly950gvi-kavyabomminenis-projects.vercel.app/
 
 ---
 
